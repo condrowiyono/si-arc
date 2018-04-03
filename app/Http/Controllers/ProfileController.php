@@ -150,9 +150,7 @@ class ProfileController extends Controller
         $user->divisions()->sync($idnya);
         
 
-        return redirect()->route('profile',$user->name);
-
-
+        return redirect()->route('profile.show',$user->name);
     }
 }
 

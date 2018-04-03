@@ -1,12 +1,12 @@
 @extends('layout.layout')
 
-@section('title', 'Manajemen Role')
+@section('title', 'Manajemen Brand')
 @section('mainContent')
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
-                <h4>Role Manager
-                    <a  href="{{ route('roles.create') }}" class="pull-right btn btn-success">Tambah Role</a>
+            <div class="col-md-8 offset-md-2">
+                <h4>Brand Item
+                    <a  href="{{ route('brands.create') }}" class="pull-right btn btn-success">New Brand</a>
                 </h4>
                 @if ($message = Session::get('success'))
                     <div class="alert alert-success">
@@ -26,21 +26,21 @@
                         </thead>
                         <tbody>
                         @php($i = 1)
-                        @foreach ($roles as $role)
+                        @foreach ($brands as $brand)
 
                             <tr class="">
                                 <td>{{ $i++ }}</td>
-                                <td><a href="{{ route('roles.show',$role->id) }}" class="font-weight-bold" >{{ $role->display_name }}</a>
+                                <td><a href="{{route('brands.show',$brand->id)}}"> {{ $brand->brand_name }}</a>
                                 </td>
-                                <td>{{ $role->description }}</td>
+                                <td>{{ $brand->desc }}</td>
                                 <td>
-                                    <a href="{{ route('roles.edit',$role->id) }}" class="btn btn-default"><i class="fa fa-btn fa-pencil"></i></a>
+                                    <a href="{{ route('brands.edit',$brand->id) }}" class="btn btn-default"><i class="fa fa-btn fa-pencil"></i></a>
 
-                                    <form action="{{ route('roles.destroy',$role->id) }}" class="form-delete" method="POST" style="display: inline-block">
+                                    <form action="{{ route('brands.destroy',$brand->id) }}" class="form-delete" method="POST" style="display: inline-block">
                                         {{ csrf_field() }}
                                         {{ method_field('DELETE') }}
 
-                                        <button type="submit" id="delete-task-{{ $role->id }}" class="btn btn-default">
+                                        <button type="submit" id="delete-task-{{ $brand->id }}" class="btn btn-default">
                                             <i class="fa fa-btn fa-trash"></i>
                                         </button>
                                     </form>

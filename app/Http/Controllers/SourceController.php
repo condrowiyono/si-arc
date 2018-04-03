@@ -7,14 +7,19 @@ use App\Http\Controllers\Controller;
 
 class SourceController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+     public function __construct()
+    {
+        //Atur permission dulu
+        $this->middleware('permission:source-create', ['only' => ['create', 'store']]);   
+        $this->middleware('permission:source-list', ['only' => ['index', 'show']]);    
+        $this->middleware('permission:source-update', ['only' => ['edit', 'update']]);   
+        $this->middleware('permission:source-delete', ['only' => ['show', 'destroy']]);
+    }
     public function index()
     {
-        //
+        $sources = \App\Source::orderBy('id','DESC')->get();
+
+        return view('items.source.index',compact('sources'));
     }
 
     /**
@@ -24,7 +29,7 @@ class SourceController extends Controller
      */
     public function create()
     {
-        //
+        return view('items.source.create');
     }
 
     /**
@@ -35,7 +40,19 @@ class SourceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|unique:sources,source_name',
+            'add_information' => 'required',
+        ]);
+
+        $table = new \App\Source();
+        $table->source_name = $request->input('name');
+        $table->add_information = $request->input('add_information');
+        $table->save();
+
+        
+        return redirect()->route('sources.index')
+            ->with('success','Berhasil membuat Source ');
     }
 
     /**
@@ -46,7 +63,8 @@ class SourceController extends Controller
      */
     public function show($id)
     {
-        //
+        $sources = \App\Source::find($id);
+        return view('items.source.show',compact('sources'));   
     }
 
     /**
@@ -57,7 +75,8 @@ class SourceController extends Controller
      */
     public function edit($id)
     {
-        //
+        $sources = \App\Source::find($id);
+        return view('items.source.edit',compact('sources'));   
     }
 
     /**
@@ -69,7 +88,19 @@ class SourceController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'add_information' => 'required',
+        ]);
+
+        
+        $table = \App\Source::find($id);
+        // $table->location_name = $request->input('name');
+        $table->add_information = $request->input('add_information');
+        $table->save();
+
+
+        return redirect()->route('sources.index')
+            ->with('success','Berhasil memperbarui sources');
     }
 
     /**
@@ -80,6 +111,13 @@ class SourceController extends Controller
      */
     public function destroy($id)
     {
-        //
+        try{    
+            \App\Source::find($id)->delete();
+            return redirect()->route('sources.index')
+                ->with('success','Berhasil menghapus sources');
+        }catch(Exception $e){
+            return redirect()->route('sources.index')
+                ->with('success','Pastikan tidak ada ketergantungan');
+        }
     }
 }

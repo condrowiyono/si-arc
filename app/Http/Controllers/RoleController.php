@@ -17,7 +17,7 @@ class RoleController extends Controller
         $this->middleware('permission:role-create', ['only' => ['create', 'store']]);   
         $this->middleware('permission:role-list', ['only' => ['index', 'show']]);    
         $this->middleware('permission:role-update', ['only' => ['edit', 'update']]);   
-        $this->middleware('permission:role-delete', ['only' => ['show', 'delete']]);
+        $this->middleware('permission:role-delete', ['only' => ['show', 'destroy']]);
     }
     /**
      * Display a listing of the resource.
@@ -152,7 +152,6 @@ class RoleController extends Controller
     public function destroy($id)
     {
         DB::table("roles")->where('id',$id)->delete();
-
         return redirect()->route('roles.index')
             ->with('success','Berhasil menghapus Role');
     }

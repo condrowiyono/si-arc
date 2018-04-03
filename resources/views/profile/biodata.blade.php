@@ -7,7 +7,13 @@
             <div class="col-md-12">
                 <div class="space-20"></div>
                 <div class="bgc-white p-20 bd">
-                    <div class="mB-20"> <h4><span class="fa fa-user"></span> {{$user->name}} </h4>
+                    <div class="mB-20"> <h4><span class="fa fa-user"></span> {{$user->name}}
+                                    @if(!empty($user->roles))
+                                        @foreach($user->roles as $role)
+                                            <smalll><label class="tag">{{ $role->display_name }}</label></smalll>
+                                        @endforeach
+                                    @endif
+                    </h4>
                     </div>
                     <div class="isi">
                         <ul class="nav nav-tabs">

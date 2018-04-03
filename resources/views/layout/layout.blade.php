@@ -62,6 +62,10 @@
             z-index: 10000!important;
         }
 
+        .table-action {
+            min-width: 120px;
+
+        }
 
         @-webkit-keyframes sk-scaleout {
             0% { -webkit-transform: scale(0) }

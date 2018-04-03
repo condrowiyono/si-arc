@@ -30,12 +30,12 @@
                     <table id="example" class="table table-bordered table-condensed" data-form="deleteForm">
                         <thead>
                         <tr>
-                            <th>No</th>
+                            <th>NIM</th>
                             <th>Username</th>
                             <th>Roles</th>
                             <th>Nama Lengkap</th>
                             <th>Email</th>
-                            <th>Status</th>
+                            <th>Divisi</th>
                             <th class="table-action">Aksi</th>
                         </tr>
                         </thead>
@@ -43,9 +43,9 @@
                         @php ($i = 1)
                         @foreach ($users as $key => $user)
                             <tr class="list-users">
-                                <td>{{ $i++ }}</td>
+                                <td>{{ $user->nim }}</td>
                                 <td>
-                                    <a href="{{ route('users.show', $user->id) }}" class="font-weight-bold">{{ $user->name }}</a>
+                                    <a href="{{ route('profile.show', $user->name) }}" class="font-weight-bold">{{ $user->name }}</a>
                                 </td>
                                 
                                 <td>
@@ -58,10 +58,11 @@
                                 <td>{{ $user->fullname }}</td>
                                 <td>{{ $user->email }}</td>
                                 <td>
-                                    <label class='toggler__label'>
-                                        <input class="activetoogle" id="{{ $user->id }}" name="active" type="checkbox" hidden {{($user->active) ? 'checked' : ''}} >
-                                        <div class='toggler'></div>
-                                    </label>
+                                    @if(!empty($user->divisions))
+                                        @foreach($user->divisions as $division)
+                                            {{$division->division}} ({{$division->pivot->year}})
+                                        @endforeach
+                                    @endif
                                 </td>
                                 <td>
                                     <a href="{{ route('users.edit', $user->id) }}" class="btn btn-default"><i class="fa fa-btn fa-pencil"></i></a>

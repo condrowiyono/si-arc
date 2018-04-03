@@ -20,15 +20,23 @@ Auth::routes();
 // Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['middleware' => ['auth']], function() {
-    Route::get('/', function () { return view('dashboard'); });
-    Route::get('/home', function () { return view('dashboard'); });
+    Route::get('/', function () { return view('welcome'); });
+    Route::get('/home', function () { return view('welcome'); });
     
     Route::resource('roles','RoleController');
-    Route::resource('users','UserController');   
+    Route::resource('users','UserController');  
+    //Kelompok item
+    Route::prefix('items')->group(function () {
+	    Route::resource('locations','LocationController');
+	    Route::resource('brands','BrandController');
+	    Route::resource('sources','SourceController');   
+	});
+	Route::resource('items','ItemController');
 
-    Route::get('/{username}', 'ProfileController@show')->name('profile.show');
-    Route::get('/{username}/contact', 'ProfileController@showContact')->name('profile.showContact');
-    Route::get('/{username}/division', 'ProfileController@showDivision')->name('profile.showDivision');
-    Route::get('/{username}/edit', 'ProfileController@edit')->name('profile.edit');
-    Route::match(['put', 'patch'],'/{username}/update', 'ProfileController@updateProfile')->name('profile.update');
+
+    Route::get('/p/{username}', 'ProfileController@show')->name('profile.show');
+    Route::get('/p/{username}/contact', 'ProfileController@showContact')->name('profile.showContact');
+    Route::get('/p/{username}/division', 'ProfileController@showDivision')->name('profile.showDivision');
+    Route::get('/p/{username}/edit', 'ProfileController@edit')->name('profile.edit');
+    Route::match(['put', 'patch'],'/p/{username}/update', 'ProfileController@updateProfile')->name('profile.update');
 });

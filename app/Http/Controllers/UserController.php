@@ -18,7 +18,7 @@ class UserController extends Controller
         $this->middleware('permission:user-create', ['only' => ['create', 'store']]);   
         $this->middleware('permission:user-list', ['only' => ['index', 'show']]);    
         $this->middleware('permission:user-update', ['only' => ['edit', 'update']]);   
-        $this->middleware('permission:user-delete', ['only' => ['show', 'delete']]);
+        $this->middleware('permission:user-delete', ['only' => ['show', 'destroy']]);
     }
     /**
      * Display a listing of the resource.
@@ -157,9 +157,8 @@ class UserController extends Controller
             return redirect()->route('users.index')
                 ->with('success','Berhasil menghapus user');
         }catch(Exception $e){
-             
             return redirect()->route('users.index')
-                ->with('success','Tidak dapat menghapus User ini, masih terdapat konten yang terkait dengan User ini. Edit atau hapus dahulu konten yang terkait dengan User ini, kemudian coba lagi');
+                ->with('success','Pastikan tidak ada ketergantungan');
         }
        
     }

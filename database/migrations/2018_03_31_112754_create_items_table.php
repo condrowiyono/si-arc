@@ -27,7 +27,7 @@ class CreateItemsTable extends Migration
             $table->longText('specification');
             $table->date('date_enter');
             $table->string('condition');
-            $table->mediumInteger('value'); //estimated value
+            $table->decimal('value', 15, 2); //estimated value
             $table->string('status');
             $table->timestamps();
             $table->softDeletes();

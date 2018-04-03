@@ -55,14 +55,15 @@
                                     <h5>Social Media Account</h5>
                                     <div class="row mY-20">
                                         <div class="col-md-3"> Social </div>
-                                        <div>
+                                        <div class="col-md-7">
                                             @foreach($user->socials as $social)
-                                            <div class="col-md-7"> <span class="fa fa-{{$social->type}}" style="display: inline;"></span><b>{{$social->account}}</b></div>
+                                            <div class=""> 
+                                                <span class="fa fa-{{$social->type}}"></span>
+                                                {{$social->account}}
+                                            </div>
                                             @endforeach
                                         </div>
                                     </div>
-
-
                                 </div>
                             </div>
                         </div>

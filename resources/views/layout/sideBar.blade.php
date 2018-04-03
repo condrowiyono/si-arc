@@ -4,7 +4,7 @@
         <div class="sidebar-logo">
             <div class="peers ai-c fxw-nw">
                 <div class="peer peer-greed">
-                    <a class="sidebar-link td-n" href="index.html">
+                    <a class="sidebar-link td-n" href="/">
                         <div class="peers ai-c fxw-nw">
                             <div class="peer">
                                 <div class="logo">
@@ -12,7 +12,7 @@
                                 </div>
                             </div>
                             <div class="peer peer-greed">
-                                <h5 class="lh-1 mB-0 logo-text">Adminator</h5>
+                                <h5 class="lh-1 mB-0 logo-text"></h5>
                             </div>
                         </div>
                     </a>
@@ -30,20 +30,53 @@
         <!-- ### $Sidebar Menu ### -->
         <ul class="sidebar-menu scrollable pos-r">
             <li class="nav-item mT-30 active">
-                <a class="sidebar-link" href="/admin/dashboard">
+                <a class="sidebar-link" href="#">
                 <span class="icon-holder">
-                  <i class="c-blue-500 ti-home"></i>
+                  <i class="c-brown-500 ti-home"></i>
                 </span>
-                    <span class="title">Dashboard</span>
+                    <span class="title">Home</span>
                 </a>
             </li>
             <li class="nav-item">
-                <a class='sidebar-link' href="/admin/email">
+                <a class='sidebar-link' href="{{route('users.index')}}">
                 <span class="icon-holder">
-                  <i class="c-brown-500 ti-email"></i>
+                  <i class="c-brown-500 ti-user"></i>
                 </span>
                     <span class="title">Users - Kru</span>
                 </a>
+            </li>
+            <li class="nav-item">
+                <a class='sidebar-link' href="{{route('roles.index')}}">
+                <span class="icon-holder">
+                  <i class="c-brown-500 ti-direction"></i>
+                </span>
+                    <span class="title">Roles</span>
+                </a>
+            </li>
+            <li class="nav-item dropdown open">
+                <a class="dropdown-toggle" href="javascript:void(0);">
+                <span class="icon-holder">
+                  <i class="c-brown-500 ti-archive"></i>
+                </span>
+                    <span class="title">Inventory</span>
+                    <span class="arrow">
+                  <i class="ti-angle-right"></i>
+                </span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a class='sidebar-link' href="{{route('brands.index')}}">Brand</a>
+                    </li>
+                    <li>
+                        <a class='sidebar-link' href="{{route('locations.index')}}">Location</a>
+                    </li>
+                    <li>
+                        <a class='sidebar-link' href="{{route('sources.index')}}">Source</a>
+                    </li>
+                    <li>
+                        <a class='sidebar-link' href="{{ route('items.index')}}">Item</a>
+                    </li>
+                </ul>
             </li>
         </ul>
     </div>

@@ -13,7 +13,7 @@
     </div>
 
     <div class='d-f jc-c fxd-c'>
-        <h1 class='mB-30 fw-900 lh-1 c-red-500' style="font-size: 60px;">404</h1>
+        <h1 class='mB-30 fw-900 lh-1 c-red-500' style="font-size: 60px;">403</h1>
         <h3 class='mB-10 fsz-lg c-grey-900 tt-c'>Oops Akses ditolak</h3>
         <p class='mB-30 fsz-def c-grey-700'>Anda tidak memiliki akses ke halaman yang akan dituju .</p>
         <div>
